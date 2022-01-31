@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "email": "angular-test@gmail.com",
+      "username": "username1",
+      "password": "password",
+      "id": 1
+    }
+  ],
+  "posts": []
+}
