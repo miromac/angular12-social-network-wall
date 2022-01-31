@@ -1,18 +1,18 @@
 <div class="container">
   <div class="form-container">
     <div class="title">Create Account</div>
-    <form>
+    <form [formGroup]="createAccountForm">
       <mat-form-field appearance="outline">
         <mat-label>Enter your email</mat-label>
-        <input matInput/>
+        <input matInput formControlName="email" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Enter your username</mat-label>
-        <input matInput/>
+        <input matInput formControlName="username" />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Enter your password</mat-label>
-        <input type="password" matInput/>
+        <input type="password" matInput formControlName="password" />
       </mat-form-field>
     </form>
     <div class="buttons-container">
@@ -20,7 +20,7 @@
         Create Account
       </button>
       <p>OR</p>
-      <button mat-button>Login</button>
+      <button routerLink="/login" mat-button>Login</button>
     </div>
   </div>
 </div>
