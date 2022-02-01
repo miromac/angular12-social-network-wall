@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb:FormBuilder, public userService:UserService, private snackbar:MatSnackBar) { }
+  constructor(private fb:FormBuilder, public userService:UserService, private snackbar:MatSnackBar, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +31,8 @@ export class LoginComponent implements OnInit {
         if (res[0].password === this.loginForm.value.password) {
           console.log("Matched");
           this.snackbar.open('Login successful', 'ok');
+          this.userService.user = res[0];
+          this.router.navigate(['/posts']);
         } else {
           console.log("Incorrect password");
           this.snackbar.open('Incorrect password', 'ok');

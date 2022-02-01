@@ -2,9 +2,21 @@
   "users": [
     {
       "email": "angular-test@gmail.com",
-      "username": "username1",
+      "username": "angular",
       "password": "password",
       "id": 1
+    },
+    {
+      "email": "react@gmail.com",
+      "username": "react",
+      "password": "password",
+      "id": 2
+    },
+    {
+      "email": "vue@gmail.com",
+      "username": "vue",
+      "password": "password",
+      "id": 3
     }
   ],
   "posts": []
