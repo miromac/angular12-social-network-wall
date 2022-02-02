@@ -6,20 +6,25 @@ import { AppComponent } from './app.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './pages/login/login.component';
-
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
 import { CreateAccountComponent } from './pages/create-account/create-account.component';
-
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PostsComponent } from './pages/posts/posts.component';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -42,7 +47,10 @@ import { MatCardModule } from '@angular/material/card';
     MatSnackBarModule,
     MatIconModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    MaterialFileInputModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,27 +1,34 @@
-# AngularSocialNetworkWall
+# AngularSocialNetworkWall Demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
+This project was generated with:
+                                        Angular: 12.1.2
+                                        AngularFire: 6.1.5
+                                        Firebase: 7.0 || 8.0
 
-## Development server
+### Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Clone the project.
 
-## Code scaffolding
+2. Run `npm install`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Create project in FireBase https://console.firebase.google.com/
 
-## Build
+4. Add Firebase config to environments variable
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    Open /src/environments/environment.ts and add your Firebase configuration. You can find your project configuration in the Firebase Console. Click the Gear icon next to Project Overview, in the Your Apps section, create a new app and choose the type Web. Give the app a name and copy the config values provided.
 
-## Running unit tests
+    export const environment = {
+      production: false,
+      firebase: {
+        apiKey: '<your-key>',
+        authDomain: '<your-project-authdomain>',
+        projectId: '<your-project-id>',
+        storageBucket: '<your-storage-bucket>',
+        messagingSenderId: '<your-messaging-sender-id>',
+        appId: '<your-app-id>'
+      }
+    };
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+5. Run mock-api in your terminal `json-server --watch mock-api/data.json`.
