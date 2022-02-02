@@ -30,8 +30,8 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button class="like-button" mat-icon-button disableRipple="true">
-          <mat-icon> favorite_border </mat-icon>
+        <button (click)="like(post.id)" class="like-button" mat-icon-button disableRipple="true">
+          <mat-icon> {{post.likes.indexOf(userService.user.id) >= 0 ? 'favorite' : 'favorite_border'}} </mat-icon>
         </button> <span>{{post.likes.length}} liked it</span>
       </mat-card-actions>
       <div class="comments-container">

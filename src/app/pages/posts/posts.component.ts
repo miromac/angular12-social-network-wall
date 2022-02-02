@@ -65,6 +65,23 @@ export class PostsComponent implements OnInit {
         }).catch((err)=>{
           console.log(err);
         });
+        this.selectedFile = undefined;
+        
+      }).catch((err)=>{
+        console.log(err);
+      })
+    }
+    else{
+      let postObj = {
+        username: this.userService.user.username,
+        text : this.text,
+        imageURL: '',
+        likes: [],
+        comments:[]
+      };
+      this.posts.push(postObj);
+      this.postService.saveNewPost(postObj).then((res)=>{
+        console.log(res);
       }).catch((err)=>{
         console.log(err);
       });
@@ -96,6 +113,24 @@ export class PostsComponent implements OnInit {
         }
       );
     });
+  }
+
+  like(postId:any){
+    for(let i = 0; i < this.posts.length; i++){
+      if(this.posts[i].id == postId){
+        if(this.posts[i].likes.indexOf(this.userService.user.id) >= 0){
+          this.posts[i].likes.splice(this.posts[i].likes.indexOf(this.userService.user.id), 1);
+        }
+        else{
+          this.posts[i].likes.push(this.userService.user.id);
+        }
+        this.postService.updateLikes(this.posts[i]).then((res)=>{
+          console.log(res);
+        }).catch((err)=>{
+          console.log(err);
+        })
+      }
+    }
   }
 
   postSchema = {
