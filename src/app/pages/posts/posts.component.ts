@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { finalize } from 'rxjs/operators';
 import { PostService } from 'src/app/services/post.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-posts',
@@ -15,7 +16,8 @@ export class PostsComponent implements OnInit {
   constructor(public userService:UserService,
     private router:Router,
     private storage:AngularFireStorage,
-    public postService:PostService) { }
+    public postService:PostService,
+    private snackbar:MatSnackBar) { }
 
   ngOnInit(): void {
     if (this.userService.user == undefined || this.userService.user == null) {
@@ -49,6 +51,7 @@ export class PostsComponent implements OnInit {
   }
 
   post(){
+    this.snackbar.open('Creating the post...', '', {duration:15000});
     if(this.selectedFile != undefined || this.selectedFile != null){
       this.uploadImage().then((imageURL)=>{
         console.log(imageURL);
@@ -62,6 +65,7 @@ export class PostsComponent implements OnInit {
         this.posts.push(postObj);
         this.postService.saveNewPost(postObj).then((res)=>{
           console.log(res);
+          this.snackbar.open('Posted successfully', 'ok');
         }).catch((err)=>{
           console.log(err);
         });
@@ -82,6 +86,7 @@ export class PostsComponent implements OnInit {
       this.posts.push(postObj);
       this.postService.saveNewPost(postObj).then((res)=>{
         console.log(res);
+        this.snackbar.open('Posted successfully', 'ok');
       }).catch((err)=>{
         console.log(err);
       });
@@ -129,6 +134,20 @@ export class PostsComponent implements OnInit {
         }).catch((err)=>{
           console.log(err);
         })
+      }
+    }
+  }
+
+  comment(postId:any, commentIndex:any){
+    for(let i = 0; i < this.posts.length; i++){
+      if(this.posts[i].id == postId){
+        let commentObj = {
+          username: this.userService.user.username,
+          comment: this.commentText[commentIndex]
+        };
+        this.posts[i].comments.push(commentObj);
+        this.commentText[commentIndex] = "";
+        this.postService.updateComments(this.posts[i]);
       }
     }
   }
